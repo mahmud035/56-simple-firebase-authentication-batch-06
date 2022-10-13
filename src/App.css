@@ -2,37 +2,26 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn-google-sign-in,
+.btn-github-sign-in,
+.btn-sign-out {
+  padding: 0.7rem 1.5rem;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.btn-google-sign-in {
+  background-color: #1c6758;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.btn-github-sign-in {
+  background-color: #25316d;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-sign-out {
+  background-color: #f94892;
 }

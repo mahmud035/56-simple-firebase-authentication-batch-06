@@ -23,4 +23,8 @@
 15.
 16.
 17.
+//* ADD A NEW SIGN IN METHOD
+1. enable the sign-in method
+2. Create github / twitter / facebook app
+3. get clientId and client secret
 */

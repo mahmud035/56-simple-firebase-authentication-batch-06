@@ -2,6 +2,7 @@ import './App.css';
 import app from './Firebase/firebase.init';
 import {
   getAuth,
+  GithubAuthProvider,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
@@ -12,13 +13,26 @@ const auth = getAuth(app);
 
 function App() {
   const [user, setUser] = useState({});
-  const provider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
-  const handleSignInWithPopup = () => {
-    signInWithPopup(auth, provider)
+  const handleGoogleSignInWithPopup = () => {
+    signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
         setUser(user);
+      })
+      .catch((error) => {
+        console.log('error:', error);
+      });
+  };
+
+  const handleGithubSignInWithPopup = () => {
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        console.log(user);
       })
       .catch((error) => {
         console.log('error:', error);
@@ -36,19 +50,35 @@ function App() {
       });
   };
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="App">
       {/* condition ? true : false */}
-      {user.email ? (
-        <button onClick={handleSignOut}>Sign Out</button>
+      {user.uid ? (
+        <button onClick={handleSignOut} className="btn-sign-out">
+          Sign Out
+        </button>
       ) : (
-        <button onClick={handleSignInWithPopup}>Google Sign In</button>
+        <>
+          <button
+            onClick={handleGoogleSignInWithPopup}
+            className="btn-google-sign-in"
+          >
+            Google Sign In
+          </button>
+          &nbsp;
+          <button
+            onClick={handleGithubSignInWithPopup}
+            className="btn-github-sign-in"
+          >
+            GitHub Sign In
+          </button>
+        </>
       )}
 
       {/* Conditionally render user info */}
-      {user.email && (
+      {user.uid && (
         <div>
           <h3> User Name: {user.displayName}</h3>
           <p>Email: {user.email}</p>
