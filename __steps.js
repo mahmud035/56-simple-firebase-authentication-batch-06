@@ -20,4 +20,7 @@
 14. After signInWithPopup(auth, provider) .then result, error
 
 //* DISPLAY DATA
+15.
+16.
+17.
 */
