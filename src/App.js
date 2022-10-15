@@ -1,6 +1,7 @@
 import './App.css';
 import app from './Firebase/firebase.init';
 import {
+  FacebookAuthProvider,
   getAuth,
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -14,9 +15,10 @@ const auth = getAuth(app);
 function App() {
   const [user, setUser] = useState({});
   const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
-  const handleGoogleSignInWithPopup = () => {
+  const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
@@ -27,7 +29,19 @@ function App() {
       });
   };
 
-  const handleGithubSignInWithPopup = () => {
+  const handleFacebookSignIn = () => {
+    signInWithPopup(auth, facebookProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+  };
+
+  const handleGithubSignIn = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
         const user = result.user;
@@ -61,17 +75,18 @@ function App() {
         </button>
       ) : (
         <>
-          <button
-            onClick={handleGoogleSignInWithPopup}
-            className="btn-google-sign-in"
-          >
+          <button onClick={handleGoogleSignIn} className="btn-google-sign-in">
             Google Sign In
           </button>
           &nbsp;
           <button
-            onClick={handleGithubSignInWithPopup}
-            className="btn-github-sign-in"
+            onClick={handleFacebookSignIn}
+            className="btn-facebook-sign-in"
           >
+            Facebook Sign In
+          </button>
+          &nbsp;
+          <button onClick={handleGithubSignIn} className="btn-github-sign-in">
             GitHub Sign In
           </button>
         </>

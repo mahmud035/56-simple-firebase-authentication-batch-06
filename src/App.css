@@ -3,6 +3,7 @@
 }
 
 .btn-google-sign-in,
+.btn-facebook-sign-in,
 .btn-github-sign-in,
 .btn-sign-out {
   padding: 0.7rem 1.5rem;
@@ -16,6 +17,10 @@
 
 .btn-google-sign-in {
   background-color: #1c6758;
+}
+
+.btn-facebook-sign-in {
+  background-color: #256d85;
 }
 
 .btn-github-sign-in {
